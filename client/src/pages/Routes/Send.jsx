@@ -3,29 +3,14 @@ import axios from "../../utlis/AxiosConfiq";
 import { toast } from "react-toastify";
 import { FaStar, FaRegStar, FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { getMails } from "../../redux/action/authAction";
+import { useDispatch } from "react-redux";
 const Send = () => {
+  const dispatch = useDispatch();
   const [mails, setMails] = useState([]);
   const [showDeleteIcon, setShowDeleteIcon] = useState(null);
   const [starredRows, setStarredRows] = useState([]);
   const user = useSelector((state) => state.auth.user);
-  const getMails = async () => {
-    try {
-      const { data } = await axios.get("email/inbox");
-      setMails(data);
-    } catch (error) {
-      console.log(error);
-      toast.error(`${error.response.data.message}`, {
-        position: "top-center",
-        autoClose: 1100,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  };
 
   const handleStarClick = (id) => {
     if (starredRows.includes(id)) {
@@ -34,10 +19,28 @@ const Send = () => {
       setStarredRows([...starredRows, id]);
     }
   };
-
   useEffect(() => {
-    getMails();
-  }, []);
+    const getMail = async () => {
+      try {
+        const { data } = await axios.get("email/inbox");
+        dispatch(getMails(data));
+        setMails(data);
+      } catch (error) {
+        console.log(error);
+        toast.error(`${error.response.data.message}`, {
+          position: "top-center",
+          autoClose: 1100,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    };
+    getMail();
+  }, [dispatch]);
   //   console.log(mails);
   const mailsToDisplay = mails.filter((mail) => mail.from._id === user._id);
   return (

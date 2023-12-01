@@ -4,12 +4,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const emailSlice = createSlice({
     name: "email",
     initialState: {
-        email: [],
+        emails: [],
 
     },
     reducers: {
         allMails: (state, action) => {
-            state.email = action.payload;
+            state.emails = action.payload;
 
         },
     },

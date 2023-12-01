@@ -34,7 +34,7 @@ const Header = ({ toggleSideBar }) => {
           <span className="material-symbols-outlined mr-3 ">help</span>
           <span className="material-symbols-outlined mr-3 ">settings</span>
           <span className="material-symbols-outlined mr-3 ">apps</span>
-          {user.picture ? (
+          {user?.picture ? (
             <img
               src={`../../../server/uploads/UserImages/${user?.picture}`}
               alt="ss2"
