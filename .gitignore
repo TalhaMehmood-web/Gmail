@@ -4,3 +4,8 @@
 /client/package-lock.json
 /server/package-lock.json
 /server/uploads
+/client/App.test
+/client/logo.svg
+/client/reportWebVitals.js
+/client/setupTests.js
+/client/README.md
