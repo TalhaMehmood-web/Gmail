@@ -6,4 +6,5 @@ export const logoutSuccess = createAction("auth/logoutUser");
 export const loginError = createAction("auth/loginError");
 
 //email
-export const getMails = createAction("auth/allMails");
+export const getMails = createAction("email/allMails");
+export const updateStarredRows = createAction("email/updateStarredRows");

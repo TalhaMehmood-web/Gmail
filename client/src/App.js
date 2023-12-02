@@ -8,6 +8,7 @@ import Inbox from "./pages/Routes/Inbox";
 import Starred from "./pages/Routes/Starred"
 import { Route, Routes } from 'react-router-dom';
 import Send from './pages/Routes/Send';
+import Bin from './pages/Routes/Bin';
 function App() {
   return (
     <div  >
@@ -18,6 +19,7 @@ function App() {
           <Route index path='inbox' element={<Inbox />} />
           <Route path='starred' element={<Starred />} />
           <Route path='send' element={<Send />} />
+          <Route path='bin' element={<Bin />} />
         </Route>
       </Routes>
       <ToastContainer />

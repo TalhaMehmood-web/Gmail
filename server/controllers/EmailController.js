@@ -65,4 +65,45 @@ export const allMails = async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 }
+export const starred = async (req, res) => {
+    const { emailId, isStarred } = req.body;
 
+    try {
+        const updateEmail = await Email.findById(emailId);
+
+        if (!updateEmail) {
+            return res.status(400).json({ message: "Email not found!" });
+        }
+
+        updateEmail.starred = isStarred;
+
+        // Save the updated email
+        await updateEmail.save();
+
+        res.status(200).json({ message: "Email updated successfully", updatedEmail: updateEmail });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+export const bin = async (req, res) => {
+    const { emailId, isBin } = req.body;
+
+    try {
+        const updateEmail = await Email.findById(emailId);
+
+        if (!updateEmail) {
+            return res.status(400).json({ message: "Email not found!" });
+        }
+
+        updateEmail.bin = isBin;
+
+    
+        await updateEmail.save();
+
+        res.status(200).json({ message: "Email updated successfully", updatedEmail: updateEmail });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+    }
+}

@@ -18,6 +18,9 @@ const SideBar = ({ toggle }) => {
   const send = () => {
     navigate("/mail/send");
   };
+  const bin = () => {
+    navigate("/mail/bin");
+  };
   return (
     <div
       className={`${sidebarClass} ${
@@ -55,7 +58,10 @@ const SideBar = ({ toggle }) => {
           <span className="material-symbols-outlined mr-3">draft</span>
           <p> Draft</p>
         </div>
-        <div className="flex items-center cursor-pointer hover:bg-gray-200 p-2 rounded-full">
+        <div
+          className="flex items-center cursor-pointer hover:bg-gray-200 p-2 rounded-full"
+          onClick={bin}
+        >
           <span className="material-symbols-outlined   mr-3">delete</span>{" "}
           <p> Bin</p>
         </div>
